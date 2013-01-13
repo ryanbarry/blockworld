@@ -3,15 +3,6 @@
 #include <GL/glew.h>
 
 class ShaderProgram {
-private:
-	GLuint vtxId, frgId, prgId;
-	bool vtxLoaded, frgLoaded, programLinked;
-	
-	char* readFile(const char *filename);
-	bool compileShader(GLuint id, char *source);
-	void printShaderInfoLog(GLuint id, const char *name);
-	bool linkProgram();
-	
 public:
 	ShaderProgram();
 	~ShaderProgram();
@@ -23,4 +14,13 @@ public:
 	void uniformValueInt(int id, int value);
 	bool isUsable();
 	void use();
+	
+private:
+	GLuint vtxId, frgId, prgId;
+	bool vtxLoaded, frgLoaded, programLinked;
+	
+	char* readFile(const char *filename);
+	bool compileShader(GLuint id, char *source);
+	void printShaderInfoLog(GLuint id, const char *name);
+	bool linkProgram();
 };
