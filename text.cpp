@@ -114,6 +114,7 @@ Text::Text() {
 	shader->loadVertexShaderSource("text.vert");
 	shader->loadFragmentShaderSource("basic.frag");
 	positionAttributeId = shader->getAttributeLocation("vertexPosition_screenspace");
+	UVAttributeId = shader->getAttributeLocation("vertexUV");
 }
 
 Text::~Text() {
