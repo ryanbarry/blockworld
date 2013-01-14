@@ -63,7 +63,6 @@ int main(int argc, char* argv[])
 		glm::mat4 ProjectionMatrix = getProjectionMatrix();
 		glm::mat4 ViewMatrix = getViewMatrix();
 		
-		std::cout << "calling Graphics::render()..." << std::endl;
 		gfx->render(ProjectionMatrix, ViewMatrix);
 
 		framecount++;

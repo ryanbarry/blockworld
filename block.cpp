@@ -150,6 +150,11 @@ Block::Block() {
 	renderable->useTexture("tilemap.tga");
 }
 
+Block::Block(const Block& original) {
+	shader = original.shader;
+	renderable = new Renderable(*(original.renderable));
+}
+
 Block::~Block() {
 	delete renderable;
 	delete shader;

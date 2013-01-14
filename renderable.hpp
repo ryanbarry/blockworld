@@ -6,6 +6,7 @@
 class Renderable {	
 public:
 	Renderable();
+	Renderable(const Renderable& original);
 	virtual ~Renderable();
 	void specifyVertices(const float v[], const float n[], const float t[], int count);
 	void useTexture(const char *filename);
@@ -21,7 +22,6 @@ public:
 protected:
 	GLuint vertexArrayId;
 	GLuint bufferId;
-	GLuint shaderProgramId;
 	GLuint shaderTexId;
 	GLuint positionAttributeId, UVAttributeId;
 	int vertexCount, texId;

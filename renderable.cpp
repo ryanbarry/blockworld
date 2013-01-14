@@ -18,6 +18,32 @@ Renderable::Renderable() {
 	enableTexture = false;
 }
 
+Renderable::Renderable(const Renderable& original) {
+	glGenVertexArrays(1, &vertexArrayId);
+    glBindVertexArray(vertexArrayId);
+    glGenBuffers(1, &bufferId);
+	
+	vertexCount = original.vertexCount;
+	if(original.vertices != NULL) {
+		vertices = new float[8*vertexCount];
+		memcpy(vertices, original.vertices, sizeof(float)*8*vertexCount);
+	}
+	updateBuffer();
+    
+	translation = glm::mat4(original.translation);
+    scale = glm::mat4(original.scale);
+    transform = glm::mat4(original.transform);
+	
+	shader = original.shader;
+	shaderMVP = original.shaderMVP;
+	positionAttributeId = original.positionAttributeId;
+	shaderTexId = original.shaderTexId;
+	UVAttributeId = original.UVAttributeId;
+	
+	texId = original.texId;
+	enableTexture = original.enableTexture;
+}
+
 Renderable::~Renderable() {
     glDeleteBuffers(1, &bufferId);
     glDeleteVertexArrays(1, &vertexArrayId);
@@ -29,7 +55,7 @@ void Renderable::specifyVertices(const float v[], const float n[], const float t
 		vertexCount = count;
 	} else if (count != vertexCount) {
 		delete vertices;
-		vertices = new float[3*3*count];
+		vertices = new float[8*count];
 		vertexCount = count;
 	}
 	

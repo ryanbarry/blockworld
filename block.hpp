@@ -6,7 +6,7 @@
 class Block {
 public:
 	Block();
-	Block(const Block& original_block);
+	Block(const Block& original);
 	~Block();
 	Renderable* getRenderable();
 	void translate(float x, float y, float z);
