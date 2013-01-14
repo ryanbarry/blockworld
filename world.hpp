@@ -10,5 +10,6 @@ public:
 	~World();
 	
 private:
+	Block block;
 	std::vector<Block>* blocks;
 };
