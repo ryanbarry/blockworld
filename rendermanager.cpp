@@ -17,8 +17,7 @@ void RenderManager::includeRenderable(Renderable* obj) {
 }
 
 void RenderManager::render(glm::mat4& ProjectionMatrix, glm::mat4& ViewMatrix) {
-    // Clear the screen
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    gfx.clear();
 	
 	ViewProjection = ProjectionMatrix * ViewMatrix;
 
