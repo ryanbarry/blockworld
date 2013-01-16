@@ -2,7 +2,7 @@ CC		= g++
 CFLAGS	= -c -Wall
 LIBS	= -lglew -lglfw -framework Cocoa -framework OpenGL -framework IOKit
 TARGET	= gltest
-SOURCES	= main.cpp graphics.cpp renderable.cpp shaderprogram.cpp controls.cpp texture.cpp text.cpp block.cpp world.cpp
+SOURCES	= main.cpp rendermanager.cpp renderable.cpp shaderprogram.cpp controls.cpp texture.cpp text.cpp block.cpp world.cpp
 OBJECTS = $(SOURCES:.cpp=.o)
 
 all: $(SOURCES) $(TARGET)

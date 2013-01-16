@@ -2,11 +2,11 @@
 
 #include <vector>
 #include "block.hpp"
-#include "graphics.hpp"
+#include "rendermanager.hpp"
 
 class World {
 public:
-	World(Graphics* gfx);
+	World(RenderManager* renderman);
 	~World();
 	
 private:

@@ -3,13 +3,13 @@
 #include <GL/glew.h>
 #include <GL/glfw.h>
 
-#include "graphics.hpp"
+#include "rendermanager.hpp"
 
-Graphics::Graphics() {
+RenderManager::RenderManager() {
 	scene = new std::list<Renderable*>();
 }
 
-Graphics::~Graphics() {
+RenderManager::~RenderManager() {
     // Close OpenGL window and terminate GLFW
     glfwTerminate();
 
@@ -20,7 +20,7 @@ Graphics::~Graphics() {
 	delete scene;
 }
 
-bool Graphics::initializeAndOpenWindow(int windowWidth, int windowHeight) {
+bool RenderManager::initializeAndOpenWindow(int windowWidth, int windowHeight) {
     bool result = false;
 	
 	// Initialise GLFW
@@ -69,11 +69,11 @@ bool Graphics::initializeAndOpenWindow(int windowWidth, int windowHeight) {
 	return result;
 }
 
-void Graphics::includeRenderable(Renderable* obj) {
+void RenderManager::includeRenderable(Renderable* obj) {
 	scene->push_back(obj);
 }
 
-void Graphics::render(glm::mat4& ProjectionMatrix, glm::mat4& ViewMatrix) {
+void RenderManager::render(glm::mat4& ProjectionMatrix, glm::mat4& ViewMatrix) {
     // Clear the screen
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	

@@ -5,10 +5,10 @@
 
 #include "renderable.hpp"
 
-class Graphics {
+class RenderManager {
 public:
-	Graphics();
-	~Graphics();
+	RenderManager();
+	~RenderManager();
 	bool initializeAndOpenWindow(int windowWidth, int windowHeight);
 	void includeRenderable(Renderable* obj);
 	void render(glm::mat4& ProjectionMatrix, glm::mat4& ViewMatrix);

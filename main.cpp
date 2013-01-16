@@ -14,7 +14,7 @@
 using namespace glm;
 
 #include "shader.hpp"
-#include "graphics.hpp"
+#include "rendermanager.hpp"
 #include "renderable.hpp"
 #include "controls.hpp"
 #include "text.hpp"
@@ -26,8 +26,8 @@ int main(int argc, char* argv[])
 	unsigned int framecount = 0;
 	char fpsstring[64];
 	
-	Graphics *gfx = new Graphics();
-	gfx->initializeAndOpenWindow(1024, 768);
+	RenderManager *renderman = new RenderManager();
+	renderman->initializeAndOpenWindow(1024, 768);
 	
 	lastTime = glfwGetTime();
 	
@@ -36,7 +36,7 @@ int main(int argc, char* argv[])
 	glfwDisable(GLFW_MOUSE_CURSOR);
 	glfwSetMousePos(0, 0);
 	
-	World* world = new World(gfx);
+	World* world = new World(renderman);
 
 	Text *testtext = new Text();
 	testtext->setPosition(8, 745, 1.0f);
@@ -46,8 +46,8 @@ int main(int argc, char* argv[])
 	frametimedisplay->setPosition(8, 725, 1.0f);
 	frametimedisplay->setText("00.00 fps - 00.00 ms/frame  ");
 	
-	gfx->includeRenderable(frametimedisplay);
-	gfx->includeRenderable(testtext);
+	renderman->includeRenderable(frametimedisplay);
+	renderman->includeRenderable(testtext);
     
 	do{
 		currentTime = glfwGetTime();
@@ -63,13 +63,13 @@ int main(int argc, char* argv[])
 		glm::mat4 ProjectionMatrix = getProjectionMatrix();
 		glm::mat4 ViewMatrix = getViewMatrix();
 		
-		gfx->render(ProjectionMatrix, ViewMatrix);
+		renderman->render(ProjectionMatrix, ViewMatrix);
 
 		framecount++;
     } // Check if the ESC key was pressed or the window was closed
     while( glfwGetKey( GLFW_KEY_ESC ) != GLFW_PRESS &&
                glfwGetWindowParam( GLFW_OPENED ) );
 	
-	delete gfx;
+	delete renderman;
     return 0;
 }

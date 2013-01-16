@@ -1,6 +1,6 @@
 #include "world.hpp"
 
-World::World(Graphics* gfx) {
+World::World(RenderManager* renderman) {
 	blocks = new std::vector<Block>(16, block);
 	int i = 0;
 	float x, z;
@@ -8,7 +8,7 @@ World::World(Graphics* gfx) {
 		x = (i%4);
 		z = (i/4);
 		it->translate(x, 0.0f, z);
-		gfx->includeRenderable(it->getRenderable());
+		renderman->includeRenderable(it->getRenderable());
 		i++;
 	}
 }
