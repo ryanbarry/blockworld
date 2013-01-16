@@ -6,10 +6,10 @@
 #include "renderable.hpp"
 #include "graphics.hpp"
 
-class RenderManager {
+class SceneManager {
 public:
-	RenderManager(Graphics &graphics);
-	~RenderManager();
+	SceneManager(Graphics &graphics);
+	~SceneManager();
 	bool initializeAndOpenWindow(int windowWidth, int windowHeight);
 	void includeRenderable(Renderable* obj);
 	void render(glm::mat4& ProjectionMatrix, glm::mat4& ViewMatrix);

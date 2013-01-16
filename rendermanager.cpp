@@ -1,10 +1,10 @@
 #include "rendermanager.hpp"
 
-RenderManager::RenderManager(Graphics &graphics) : gfx(graphics) {
+SceneManager::SceneManager(Graphics &graphics) : gfx(graphics) {
 	scene = new std::list<Renderable*>();
 }
 
-RenderManager::~RenderManager() {
+SceneManager::~SceneManager() {
 	std::list<Renderable*>::iterator it;
 	for(it = scene->begin(); it != scene->end(); it++) {
 		delete (*it);
@@ -12,11 +12,11 @@ RenderManager::~RenderManager() {
 	delete scene;
 }
 
-void RenderManager::includeRenderable(Renderable* obj) {
+void SceneManager::includeRenderable(Renderable* obj) {
 	scene->push_back(obj);
 }
 
-void RenderManager::render(glm::mat4& ProjectionMatrix, glm::mat4& ViewMatrix) {
+void SceneManager::render(glm::mat4& ProjectionMatrix, glm::mat4& ViewMatrix) {
     gfx.clear();
 	
 	ViewProjection = ProjectionMatrix * ViewMatrix;

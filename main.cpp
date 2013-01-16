@@ -35,7 +35,7 @@ int main(int argc, char* argv[])
 		return INIT_FAILED_ERROR;
 	}
 	
-	RenderManager *renderman = new RenderManager(*gfx);
+	SceneManager *sceneman = new SceneManager(*gfx);
 	
 	lastTime = glfwGetTime();
 	
@@ -44,7 +44,7 @@ int main(int argc, char* argv[])
 	glfwDisable(GLFW_MOUSE_CURSOR);
 	glfwSetMousePos(0, 0);
 	
-	World* world = new World(renderman);
+	World* world = new World(sceneman);
 
 	Text *testtext = new Text();
 	testtext->setPosition(8, 745, 1.0f);
@@ -54,8 +54,8 @@ int main(int argc, char* argv[])
 	frametimedisplay->setPosition(8, 725, 1.0f);
 	frametimedisplay->setText("00.00 fps - 00.00 ms/frame  ");
 	
-	renderman->includeRenderable(frametimedisplay);
-	renderman->includeRenderable(testtext);
+	sceneman->includeRenderable(frametimedisplay);
+	sceneman->includeRenderable(testtext);
     
 	do{
 		currentTime = glfwGetTime();
@@ -71,14 +71,14 @@ int main(int argc, char* argv[])
 		glm::mat4 ProjectionMatrix = getProjectionMatrix();
 		glm::mat4 ViewMatrix = getViewMatrix();
 		
-		renderman->render(ProjectionMatrix, ViewMatrix);
+		sceneman->render(ProjectionMatrix, ViewMatrix);
 
 		framecount++;
     } // Check if the ESC key was pressed or the window was closed
     while( glfwGetKey( GLFW_KEY_ESC ) != GLFW_PRESS &&
                glfwGetWindowParam( GLFW_OPENED ) );
 	
-	delete renderman;
+	delete sceneman;
 	delete gfx;
     return 0;
 }

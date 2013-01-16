@@ -6,7 +6,7 @@
 
 class World {
 public:
-	World(RenderManager* renderman);
+	World(SceneManager* sceneman);
 	~World();
 	
 private:
