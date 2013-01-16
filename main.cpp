@@ -20,14 +20,22 @@ using namespace glm;
 #include "text.hpp"
 #include "world.hpp"
 
+#define INIT_FAILED_ERROR 1;
+
 int main(int argc, char* argv[])
 {
 	double currentTime, lastTime, deltaTime;
 	unsigned int framecount = 0;
 	char fpsstring[64];
 	
-	RenderManager *renderman = new RenderManager();
-	renderman->initializeAndOpenWindow(1024, 768);
+	Graphics *gfx = new Graphics();
+	if(!gfx->initializeAndOpenWindow(1024, 768, false, "blockworld")) {
+		delete gfx;
+		std::cerr << "Failed to initialize Graphics, exiting." << std::endl;
+		return INIT_FAILED_ERROR;
+	}
+	
+	RenderManager *renderman = new RenderManager(*gfx);
 	
 	lastTime = glfwGetTime();
 	
@@ -71,5 +79,6 @@ int main(int argc, char* argv[])
                glfwGetWindowParam( GLFW_OPENED ) );
 	
 	delete renderman;
+	delete gfx;
     return 0;
 }
