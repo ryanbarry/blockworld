@@ -42,6 +42,12 @@ int main(int argc, char* argv[])
 	lastTime = glfwGetTime();
 	
 	World* world = new World(sceneman);
+	
+	Text *pointer = new Text();
+	// + character is 7 pixels square, 14 when scaled by 2
+	// it has a Y offset of 7, again 14 when scaled by 2
+	pointer->setPosition(512-14, 384-42, 4.0f);
+	pointer->setText("+");
 
 	Text *testtext = new Text();
 	testtext->setPosition(8, 745, 1.0f);
@@ -53,6 +59,7 @@ int main(int argc, char* argv[])
 	
 	sceneman->includeRenderable(frametimedisplay);
 	sceneman->includeRenderable(testtext);
+	sceneman->includeRenderable(pointer);
 	
 	glm::mat4 projectionMatrix = glm::perspective(65.0f, 4.0f/3.0f, 0.1f, 100.0f);
     
