@@ -139,7 +139,7 @@ void Text::setText(const char *text) {
 	}
 
 	glBindBuffer(GL_ARRAY_BUFFER, this->bufferId);
-	if(vertexCount*4*sizeof(float) > buffersize) {
+	if(vertexCount*4*(int)sizeof(float) > buffersize) {
 		buffersize = sizeof(float)*vertexCount*4;
     	glBufferData(GL_ARRAY_BUFFER, buffersize, NULL, GL_DYNAMIC_DRAW);
 	}
