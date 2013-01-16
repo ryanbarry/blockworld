@@ -14,7 +14,7 @@
 using namespace glm;
 
 #include "shader.hpp"
-#include "rendermanager.hpp"
+#include "scenemanager.hpp"
 #include "renderable.hpp"
 #include "controls.hpp"
 #include "text.hpp"

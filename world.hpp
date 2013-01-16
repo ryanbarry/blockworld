@@ -2,7 +2,7 @@
 
 #include <vector>
 #include "block.hpp"
-#include "rendermanager.hpp"
+#include "scenemanager.hpp"
 
 class World {
 public:

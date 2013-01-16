@@ -1,4 +1,4 @@
-#include "rendermanager.hpp"
+#include "scenemanager.hpp"
 
 SceneManager::SceneManager(Graphics &graphics) : gfx(graphics) {
 	scene = new std::list<Renderable*>();
