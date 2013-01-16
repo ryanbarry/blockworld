@@ -35,14 +35,11 @@ int main(int argc, char* argv[])
 		return INIT_FAILED_ERROR;
 	}
 	
+	Controls *controls = new Controls();
+	
 	SceneManager *sceneman = new SceneManager(*gfx);
 	
 	lastTime = glfwGetTime();
-	
-    // Ensure we can capture the escape key being pressed below
-    glfwEnable(GLFW_STICKY_KEYS);
-	glfwDisable(GLFW_MOUSE_CURSOR);
-	glfwSetMousePos(0, 0);
 	
 	World* world = new World(sceneman);
 
@@ -67,11 +64,8 @@ int main(int argc, char* argv[])
 			lastTime = currentTime;
 		}
 		
-		computeMatricesFromInputs();
-		glm::mat4 ProjectionMatrix = getProjectionMatrix();
-		glm::mat4 ViewMatrix = getViewMatrix();
-		
-		sceneman->render(ProjectionMatrix, ViewMatrix);
+		controls->computeMatricesFromInputs();		
+		sceneman->render(controls->getProjectionMatrix(), controls->getViewMatrix());
 
 		framecount++;
     } // Check if the ESC key was pressed or the window was closed

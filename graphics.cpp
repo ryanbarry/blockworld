@@ -67,8 +67,9 @@ bool Graphics::initializeAndOpenWindow(int windowWidth, int windowHeight, bool f
 	return result;
 }
 
-void Graphics::setWindowTitle(std::string &text) {
-	glfwSetWindowTitle(text.c_str());
+void Graphics::clear() {
+    // Clear the screen
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
 
 void Graphics::swapBuffers() {
@@ -76,7 +77,10 @@ void Graphics::swapBuffers() {
     glfwSwapBuffers();
 }
 
-void Graphics::clear() {
-    // Clear the screen
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+void Graphics::setWindowTitle(std::string &text) {
+	glfwSetWindowTitle(text.c_str());
+}
+
+void Graphics::setFullscreen(bool fullscreen) {
+	this->fullscreen = fullscreen;
 }

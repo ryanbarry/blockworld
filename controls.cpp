@@ -4,30 +4,32 @@
 
 #define PI 3.14159265f
 
-glm::mat4 ViewMatrix;
-glm::mat4 ProjectionMatrix;
+Controls::Controls() {
+	// give initial position on +Z
+	position = glm::vec3(0,0,5);
+	// initial horizontal angle toward -Z
+	horizontalAngle = PI;
+	// no initial vertical angle
+	verticalAngle = 0.0f;
 
-glm::mat4 getViewMatrix() {
-	return ViewMatrix;
+	speed = 3.0f;
+	mouseSpeed = -0.005f;
+	
+    // Ensure we can capture the escape key being pressed below
+    glfwEnable(GLFW_STICKY_KEYS);
+	glfwDisable(GLFW_MOUSE_CURSOR);
+	glfwSetMousePos(0, 0);
 }
 
-glm::mat4 getProjectionMatrix() {
-	return ProjectionMatrix;
+glm::mat4& Controls::getViewMatrix() {
+	return viewMatrix;
 }
 
-// give initial position on +Z
-glm::vec3 position = glm::vec3(0,0,5);
-// initial horizontal angle toward -Z
-float horizontalAngle = PI;
-// no initial vertical angle
-float verticalAngle = 0.0f;
-// initial field of view
-float FOV = 60.0f;
+glm::mat4& Controls::getProjectionMatrix() {
+	return projectionMatrix;
+}
 
-float speed = 3.0f;
-float mouseSpeed = -0.005f;
-
-void computeMatricesFromInputs() {
+void Controls::computeMatricesFromInputs() {
 	static double lastTime = glfwGetTime();
 	
 	double currentTime = glfwGetTime();
@@ -78,8 +80,8 @@ void computeMatricesFromInputs() {
 	
 	//float FOV = initialFOV - 5 * glfwGetMouseWheel();
 	
-	ProjectionMatrix = glm::perspective(FOV, 4.0f/3.0f, 0.1f, 100.0f);
-	ViewMatrix = glm::lookAt(position, position+direction, up);
+	projectionMatrix = glm::perspective(65.0f, 4.0f/3.0f, 0.1f, 100.0f);
+	viewMatrix = glm::lookAt(position, position+direction, up);
 	
 	lastTime = currentTime;
 }
