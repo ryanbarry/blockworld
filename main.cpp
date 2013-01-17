@@ -11,7 +11,7 @@
 
 // Include GLM
 #include <glm/glm.hpp>
-using namespace glm;
+#include <glm/gtc/matrix_transform.hpp>
 
 #include "shader.hpp"
 #include "scenemanager.hpp"
@@ -53,6 +53,8 @@ int main(int argc, char* argv[])
 	
 	sceneman->includeRenderable(frametimedisplay);
 	sceneman->includeRenderable(testtext);
+	
+	glm::mat4 projectionMatrix = glm::perspective(65.0f, 4.0f/3.0f, 0.1f, 100.0f);
     
 	do{
 		currentTime = glfwGetTime();
@@ -64,8 +66,8 @@ int main(int argc, char* argv[])
 			lastTime = currentTime;
 		}
 		
-		controls->computeMatricesFromInputs();		
-		sceneman->render(controls->getProjectionMatrix(), controls->getViewMatrix());
+		controls->computeMatricesFromInputs();
+		sceneman->render(projectionMatrix, controls->getViewMatrix());
 
 		framecount++;
     } // Check if the ESC key was pressed or the window was closed

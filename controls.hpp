@@ -10,7 +10,7 @@ public:
 	glm::mat4& getProjectionMatrix();
 	
 private:
-	glm::mat4 viewMatrix, projectionMatrix;
+	glm::mat4 viewMatrix;
 	// give initial position on +Z
 	glm::vec3 position;
 	// initial horizontal angle toward -Z

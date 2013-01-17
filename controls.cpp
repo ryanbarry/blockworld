@@ -25,10 +25,6 @@ glm::mat4& Controls::getViewMatrix() {
 	return viewMatrix;
 }
 
-glm::mat4& Controls::getProjectionMatrix() {
-	return projectionMatrix;
-}
-
 void Controls::computeMatricesFromInputs() {
 	static double lastTime = glfwGetTime();
 	
@@ -77,10 +73,6 @@ void Controls::computeMatricesFromInputs() {
 	if(glfwGetKey('A') == GLFW_PRESS) {
 		position -= right * deltaTime * speed;
 	}
-	
-	//float FOV = initialFOV - 5 * glfwGetMouseWheel();
-	
-	projectionMatrix = glm::perspective(65.0f, 4.0f/3.0f, 0.1f, 100.0f);
 	viewMatrix = glm::lookAt(position, position+direction, up);
 	
 	lastTime = currentTime;
